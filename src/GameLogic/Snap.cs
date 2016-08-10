@@ -133,57 +133,42 @@ namespace CardGames.GameLogic
 				return 0;
 		}
 
-		/// <summary>
-		/// The player hit the top of the cards "snap"! :)
-		/// Check if the top two cards' ranks match.
-		/// </summary>
-		public void PlayerHit (int player)
-		{
-			//TODO: consider deducting score for miss hits???
-			if ( player >= 0 && player < _score.Length &&  	// its a valid player
-				 IsStarted && 								// and the game is started
-				 _topCards [0] != null && _topCards [0].Rank == _topCards [1].Rank) // and its a match
-			{
-				_score[player]++;
-				//TODO: consider playing a sound here...
-			}
+        /// <summary>
+        /// The player hit the top of the cards "snap"! :)
+        /// Check if the top two cards' ranks match.
+        /// </summary>
+        public void PlayerHit(int player)
 
-			// stop the game...
-			_started = false;
-			_gameTimer.Stop ();
-		}
-	
-		#region Snap Game Unit Tests
-		#if DEBUG
+        {
 
-		public class SnapTests
-		{
-			[Test]
-			public void TestSnapCreation()
-			{
-				Snap s = new Snap();
+            //TODO: consider deducting score for miss hits???
 
-				Assert.IsTrue(s.CardsRemain);
-				Assert.IsNull (s.TopCard);
-			}
+            if (player >= 0 && player < _score.Length && // …
 
-			[Test]
-			public void TestFlipNextCard()
-			{
-				Snap s = new Snap();
+            IsStarted && // …
 
-				Assert.IsTrue(s.CardsRemain);
-				Assert.IsNull (s.TopCard);
+            _topCards[0] != null &&
+            _topCards[0].Rank == _topCards[1].Rank) // …
 
-				s.FlipNextCard ();
+            {
 
-				Assert.IsNull (s._topCards [0]);
-				Assert.IsNotNull (s._topCards [1]);
-			}
-		}
+                _score[player]++;
 
-		#endif 
-		#endregion
+            }
+            else if (player >= 0 && player < _score.Length)
+
+            {
+
+                _score[player]--;
+
+            }
+
+
+            // stop the game...
+
+            _started = false;
+
+        }
 	}
 }
 
