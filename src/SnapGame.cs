@@ -36,7 +36,8 @@ namespace CardGames
 
                 {
 
-                    //TODO: add sound effects
+                    SwinGame.LoadSoundEffectNamed("Slap", "slap.wav");
+                    SwinGame.PlaySoundEffect("Slap");
 
                 }
 
