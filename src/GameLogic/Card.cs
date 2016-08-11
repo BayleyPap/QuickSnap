@@ -283,4 +283,3 @@ namespace CardGames.GameLogic
 
     #endregion
 }
-
