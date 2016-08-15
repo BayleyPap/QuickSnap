@@ -35,7 +35,9 @@ namespace CardGames.GameLogic
 		
 		    _topCard = 0;
 		}
-        
+	
+
+
 		/// <summary>
 		/// Indicates how many Cards remain in the Deck.
 		/// </summary>
@@ -54,7 +56,21 @@ namespace CardGames.GameLogic
 		/// </summary>
 		public void Shuffle()
 		{
-			//TODO: implement shuffle!
+			for(int i = 0; i < 52; i++)
+			{
+				if(_cards[i].FaceUp) _cards[i].TurnOver();
+			}
+			Random rnd = new Random();
+			// for each card (no need to shuffle last card)
+			for(int i = 0; i < 52 - 1; i++)
+			{
+				// pick a random index
+				int rndIdx = rnd.Next(52 - i);
+				Card temp = _cards[i];
+				_cards[i] = _cards[i + rndIdx];
+				_cards[i + rndIdx] = temp;
+			}
+			_topCard = 0;
 		}
         
 		/// <summary>
